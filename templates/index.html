@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supply Chain Optimization</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Supply Chain Optimization Results</h1>
+    <div id="results">
+        <h2>Factory to Warehouse Shipments</h2>
+        <pre>{{ results['factory_to_warehouse'] }}</pre>
+
+        <h2>Warehouse to Store Shipments</h2>
+        <pre>{{ results['warehouse_to_store'] }}</pre>
+
+        <h2>Total Cost</h2>
+        <p>${{ results['total_cost'] }}</p>
+    </div>
+
+    <script>
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => {
+                Plotly.newPlot('results', [
+                    {
+                        x: Object.keys(data['factory_to_warehouse']),
+                        y: Object.values(data['factory_to_warehouse']),
+                        type: 'bar',
+                        name: 'Factory to Warehouse'
+                    },
+                    {
+                        x: Object.keys(data['warehouse_to_store']),
+                        y: Object.values(data['warehouse_to_store']),
+                        type: 'bar',
+                        name: 'Warehouse to Store'
+                    }
+                ], {
+                    title: 'Supply Chain Optimization',
+                    barmode: 'stack'
+                });
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+Flask==2.0.1
+SQLAlchemy==1.4.23
+pulp==2.4
+numpy==1.21.1
+celery==5.2.3
+redis==3.5.3

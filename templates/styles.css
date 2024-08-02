@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#results {
+    width: 80%;
+    margin: 0 auto;
+}
